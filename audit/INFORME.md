@@ -27,7 +27,7 @@ No hay GitLab/Bitbucket de la fundación referenciados desde los repos; el remot
   archivados; submodules y LFS incluidos por `git clone` por defecto.
 - Commit exacto por repo registrado (`git rev-parse HEAD`), rama por defecto de `repo_index.json`.
 - Los repos que son *forks* de terceros (geth/reth/cometbft/blockscout/wasmer/…) se clonan igual,
-  pero se marcan como **no auditados línea a línea** (ver §6).
+  pero se marcan como **no auditados línea a línea** (ver §7).
 
 ### 1.3 Commits usados para el código in-scope
 
@@ -50,7 +50,7 @@ No hay GitLab/Bitbucket de la fundación referenciados desde los repos; el remot
   commits). Índice máquina-legible con rama y HEAD por repo: `audit/repos_clonados.tsv`.
 - **RPC bloqueado por política de red del sandbox** (`evmrpc.0g.ai` solo admite POST; la salida a
   ese host está denegada). Todo `eth_call`/`eth_getBalance` se hizo por fuentes GET
-  (exploradores). Ver §2 y §6.
+  (exploradores). Ver §2 y §7.
 
 ### 1.5 Mapa dirección / artefacto → repo + ruta
 
@@ -160,7 +160,7 @@ EOA atacante → PoraMine.requestMinerId        (1 tx, permissionless)
                   ├─ getEpochRange(sealedContextDigest)   // posición dentro de un epoch pasado
                   ├─ recoverMerkleRoot(ceros) == context.flowRoot   // PASA (ver PoC)
                   ├─ pora() → calidad ≤ poraTarget                  // grinding normal
-                  └─ IReward.claimMineReward(pos/32768, beneficiary, minerId)
+                  └─ IReward.claimMineReward(pos / SECTORS_PER_PRICE, beneficiary, minerId)  // SECTORS_PER_PRICE = 8 GiB/256 B = 33.554.432
                         └─ _asyncTransfer(beneficiary, claimable/2 [+ baseReward])
 ```
 Todo está cableado y en uso: 28,8 0G ya distribuidos por esta misma ruta, 200 submissions/epoch
@@ -213,8 +213,14 @@ cobrables sin almacenar**.
   chunk: **no ocurre**.
 - Que el padding no existiera en el flow live: **existe, 28,7 % medido**.
 - Que `submit` fuera privilegiado: **es público**.
-- Que `dataProofEnabled == false` (sin prueba de datos el ataque sería aún más simple): según el
-  artefacto de despliegue (`settings = 0`) está **activo**; no verificable por `eth_call` (§6).
+- Que `dataProofEnabled == false` (sin prueba de datos el ataque sería aún más simple): el constructor
+  derivado del artefacto de red usado para mainnet-turbo,
+  `src/networks/zerog_mainnet_contract_config_turbo.ts:6` → `settings: 0` ⇒
+  `sealDataEnabled = (0 & 0x1 == 0) = true` y `dataProofEnabled = (0 & 0x2 == 0) = true`
+  (`contracts/miner/Mine.sol:94-97`). El ataque de padding es por tanto el **camino real** (si
+  `0x2` estuviera activo, cualquier posición —no sólo padding— sería reclamable). No verificable por
+  `eth_call` desde el sandbox (§7.3): `settings` es inmutable en el constructor, así que el
+  `live_anchor.sh` no lo cubre; se confirmaría con el input de creación del proxy/impl en el explorer.
 
 Mitigación sugerida: rechazar proofs cuyo bloque de 4 KB sea íntegramente ceros (o exigir
 `keccak(unsealed) != zeros(4)`), y/o pagar por posición dentro del chunk en vez de `claimable/2`
@@ -243,7 +249,68 @@ del chunk completo, y/o excluir del rango minable las posiciones de padding.
 
 ---
 
-## 5. Conclusión
+## 5. Segunda pasada (sesión 2): Compute, Restaking/Bridge, DA y settlement servers
+
+Los cuatro frentes restantes del stack in-scope se leyeron desde los clones (no desde memoria ni
+explorer). En ninguno hay una entrada **permissionless** que mueva ETH de terceros hacia el atacante.
+Los hechos que los matan, uno por uno:
+
+### 5.1 Compute / Serving — `0g-serving-contract` @ `3ceeff03ca`
+
+Despliegue mainnet (chain 16661) tal como está versionado en `deployments/zgMainnet/`:
+
+| Contrato | Proxy | Beacon | Impl |
+|---|---|---|---|
+| LedgerManager | `0x2dE54c845Cd948B72D2e32e39586fe89607074E3` | `0xFe5Ed683F64aD623fAaBb7fa439745A866aD65dF` | `0xee876A55540eeA57E684Fc3e6d8c4702810E704f` |
+| InferenceServing | `0x47340d900bdFec2BD393c626E12ea0656F938d84` | `0xE7e9e873371Cb1b42Ae9E8cB3aA646324932243A` | `0x1c0A264f5ae6cfC37E8695442fB139efD884Ca48` |
+| FineTuningServing | `0x4e3474095518883744ddf135b7E0A23301c7F9c0` | `0x449C244C7d18dBCdd3612e6B14628EEdB236fb80` | `0x795d7E2c812AB92E815e5375a0Ca707d56A4838C` |
+
+| Candidato | Hecho del código que lo mata |
+|---|---|
+| Drenar el `LedgerManager` desde un contrato/service falso | `receive()` sólo acepta `_isServiceContract(msg.sender)`, y `spendFund`/`transferFund`/`retrieveFund` son `onlyServing` con `registeredServices[msg.sender].serviceAddress != 0`. `registerService` es **onlyOwner**, exige ERC165 (`INFERENCE_SERVING_INTERFACE`) y hay tope `MAX_SERVICES = 500`. Un EOA o un contrato arbitrario no entran al ledger. |
+| `spendFund` sobre saldo de otro usuario | `spendFund(user, amount)` sólo puede consumir `totalBalance - availableBalance` (los fondos que el usuario ya transfirió a *su* servicio) y el serving sólo lo llama con `accountMap[user][provider].balance` después de `settleFeesWithTEE`/`settleFees`, que exige `settlement.provider == msg.sender`, servicio registrado, nonce creciente y firma EIP-712 (`_verifySignature`) del TEE signer del servicio. |
+| Auto-acknowledge del TEE signer en el depósito | `addAccount` marca `acknowledged = true` del signer del servicio al depositar. Es el **modelo de confianza elegido por el usuario** (elige proveedor), no una ruta a fondos ajenos: `acknowledgeTEESigner` es sólo proveedor y `acknowledgeTEESignerByOwner`/`revokeTEESignerAcknowledgement` son onlyOwner. |
+| Doble refund / acreditar dos veces | `requestRefundAll`/`processRefund`/`depositFund`/`deleteAccount` son `onlyLedger`; `retrieveFund` sólo acredita `availableBalance`; `promptWithdraw` exige `remainingBalance == 0 || >= MIN_WITHDRAW` y `cancelRetrievingAmount` se acota en el ledger a `min(amount, retrievingAmount)`. Invariante `totalBalance = availableBalance + Σ account.balance` se mantiene en los seis caminos. |
+| FineTuningServing (mismas rutas, 848 líneas) | Idénticas guardas: mutaciones de cuenta `onlyLedger`, `settleFees` resuelve `accountMap[verifierInput.user][msg.sender]` + `serviceMap[msg.sender]`, stake (100 0G) se devuelve sólo a `msg.sender` en `removeService`. |
+
+Conclusión: **no crítico**. El valor del ledger son depósitos de usuarios a proveedores que ellos
+mismos eligen; no existe llamada permissionless que toque ese ETH.
+
+### 5.2 Restaking / Bridge / Ascend — `0g-restaking-contracts` @ `f7cba8a4b7`
+
+| Candidato | Hecho del código que lo mata |
+|---|---|
+| Inyectar mensajes al bridge sin ser el CL | `Bridge.parkRemoteMessages` revierte salvo `msg.sender == SYSTEM_ADDRESS` (`0xffff…fffe`); sólo la system call del consenso escribe `pendingMessages`. |
+| `deliver`/`deliverBatch` permissionless como agujero | Sí son permissionless, pero sólo consumen `pendingMessages[srcCID][nonce]` ya parkeados: el contenido (amount, token, recipient, fee) lo fija el CL. `inboundConsumed` + nonce monótono por lane dan el replay-shield; las fees están acotadas por `MAX_FEE_BPS = 10000` y `_convertDecimals` trunca (no infla). `deliverOneInternal` exige `msg.sender == address(this)`. |
+| Acuñar `BridgeERC20` / añadir tokens | `mint` sólo el bridge (MINTER_ROLE); `BridgeAgency.deployAndAddBridgeToken` es `ADMIN_ROLE` (proxy `0x3f638aac…`). |
+| `AscendRouter.distribute()` | `onlyRole(DISTRIBUTOR_ROLE)`; `updateParams` sólo `DEFAULT_ADMIN_ROLE` y los tres porcentajes deben sumar `1e18`. Sin entrada pública. |
+| Manipular el precio del vault aOG (`OracleUpdater.setValue`) | `onlyRole(UPDATER_ROLE)`, **monótono creciente** (`value < current` revierte) y acotado por `maxValue() = (W0G del SourceCore + W0G del OFT adapter) / supply` ⇒ ni con la clave del updater se puede inflar el precio por encima del NAV on-chain. |
+| `Rewarder` / `ZeroGravity*` | Roles EigenLayer (operator/middleware/admin) para todo lo que mueve shares; no hay claim permissionless con payout a `msg.sender`. |
+
+### 5.3 DA — `0g-da-contract` @ `4653902b13`
+
+- `submitOriginalData` paga blob fee (`msg.value >= n * blobPrice`) y sólo emite `DataUpload`.
+- `submitVerifiedCommitRoots` exige agregación BLS del quórum (`getAggPkG1` + `validateSignature`) y
+  `SLICE_NUMERATOR * total <= hit * SLICE_DENOMINATOR`.
+- `submitSamplingResponse` es permissionless, pero: exige `commitmentExists(dataRoot, epoch, quorum)`,
+  `rep.sampleSeed == currentSampleSeed`, `quality <= podasTarget`, `rep.verify()` y
+  `epoch + epochWindowSize >= currentEpoch > epoch`; y el pago va a
+  `DA_SIGNERS.getQuorumRow(epoch, quorumId, lineIndex)` — **el firmante del quórum, nunca
+  `msg.sender`**. Enviar muestras válidas no reporta ni un wei al atacante.
+- `_claimBaseReward` se financia sólo con `donate()` (payable, suma a `totalBaseReward`); no es drenable
+  desde fuera.
+
+### 5.4 Settlement servers — `0g-ito-settlement-server` @ `4a672f5b3e`, `0g-zk-settlement-server` @ `1b7ccd5001`
+
+Son el diseño **previo** (zkSettlement: trazas off-chain + proof zk). El Compute live v1.0 usa el
+`LedgerManager`/`InferenceServing`/`FineTuningServing` de §5.1 (`VERSION.json` fija las imágenes del
+broker `0g-serving-broker`), y ninguno de los contratos de `contract/` de estos dos repos aparece en
+el mapa de direcciones mainnet del despliegue. Quedan **fuera del estado desplegado**: se auditan como
+código, no como superficie live.
+
+---
+
+## 6. Conclusión
 
 - **1 crítico live** (§3): extracción permissionless del reward pool de 0G Storage minando sectores
   de padding — sin almacenar, cobrando el pool completo del chunk de 8 GB pagado por terceros.
@@ -251,8 +318,13 @@ del chunk completo, y/o excluir del rango minable las posiciones de padding.
 - No se encontró ningún otro camino que mueva fondos de terceros en el nodo: el nodo **no custodia
   tokens de usuarios** (`zgs` RPC, sync, router y pruner no firman transferencias ni retiran del
   escrow), y toda la validación económica de la minería vive en los contratos.
+- **Segunda pasada (§5): 0 críticos nuevos.** Compute/Serving, Restaking/Bridge/Ascend, DA y los
+  settlement servers quedan descartados con el hecho concreto en el código: toda mutación de ETH está
+  detrás de `onlyServing`/`onlyLedger` (con registro onlyOwner), de `SYSTEM_ADDRESS` (CL), de roles
+  (`ADMIN_ROLE`/`DISTRIBUTOR_ROLE`/`UPDATER_ROLE` con bound de NAV) o paga a un tercero
+  (`DA_SIGNERS.getQuorumRow`), nunca a `msg.sender`.
 
-## 6. Límites de esta auditoría (no declaro cobertura completa)
+## 7. Límites de esta auditoría (no declaro cobertura completa)
 
 1. `0glabs/*` inaccesible (0 repos visibles) — puede contener el código histórico desplegado.
 2. Fuentes del cliente de cadena (`0gchain-Aristotle`, `0gchain-NG`) **no públicas**: sólo binarios
@@ -265,4 +337,9 @@ del chunk completo, y/o excluir del rango minable las posiciones de padding.
 4. 135/135 repos no archivados clonados (0 fallos); 1 repo de la org está vacío (sin commits) y 1
    archivado. No se auditó en profundidad el código de forks de terceros.
 5. DA (`0g-da-*`), Compute/Serving (`0g-serving-*`), bridge/restaking (`0g-restaking-contracts`) y
-   los forks de consenso: clonados, **no auditados en profundidad** en esta sesión.
+   los settlement servers: **leídos en la segunda pasada** (§5) pero **sin auditoría línea a línea de
+   las 848 líneas de `FineTuningServing` ni del circuito zk**; los forks de consenso y los precompiles
+   siguen sin auditar (fuentes no públicas, §7.2).
+6. Los balances de los contratos de Compute (`LedgerManager`, `InferenceServing`,
+   `FineTuningServing`) **no se pudieron medir** (explorer SPA sin datos por GET, RPC bloqueado): el
+   descarte de §5.1 es por control de acceso, no por TVL.
