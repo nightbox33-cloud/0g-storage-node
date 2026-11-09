@@ -1,0 +1,30 @@
+This version of µWS is not compatible with your Node.js build:
+
+Error: Cannot find module '../binaries/uws_linux_x64_127.node'
+Require stack:
+- /home/user/.cache/0g-audit/poc/node_modules/ganache/node_modules/@trufflesuite/uws-js-unofficial/src/uws.js
+- /home/user/.cache/0g-audit/poc/node_modules/ganache/dist/node/core.js
+- /home/user/.cache/0g-audit/poc/poc_retrieve_fund_drain.js
+Falling back to a NodeJS implementation; performance may be degraded.
+
+
+solc 0.8.22+commit.4fc1097e.Emscripten.clang
+
+=== A  CONTROL: proxy already initialized ===
+  uninitialized-proxy takeover : not attempted
+  malicious service registered : false
+  LedgerManager ETH            : 103 -> 103
+  malicious service ETH        : 0
+  attacker ETH delta (incl. 3 ETH deposit, excl. gas): -3.0000863402383926
+  >>> NO DRAIN: registerService() is onlyOwner and the proxy was already initialized.
+  attacker ledger after fake refund: available= 103 total= 3
+
+=== B  CONDITIONAL: proxy left uninitialized ===
+  uninitialized-proxy takeover : SUCCEEDED: attacker became owner
+  malicious service registered : true
+  LedgerManager ETH            : 103 -> 0
+  malicious service ETH        : 0
+  attacker ETH delta (incl. 3 ETH deposit, excl. gas): 99.99964055344101
+  >>> DRAIN CONFIRMED: attacker put X=3 ETH, extracted the full 103 ETH; Y-X = 100 ETH came from the VICTIM's deposit.
+
+Conclusion: the accounting bug is REAL and executable against the verified mainnet bytecode, but exploiting it requires registerService() (onlyOwner). Whether the live 16661 proxy is uninitialized/owner-compromised needs eth_getStorageAt(0x2dE54c84..., 0), initialized() and owner().

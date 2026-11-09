@@ -1,8 +1,15 @@
 # Auditoría ofensiva 0G — mainnet Aristotle (chainId 16661)
 
-Fecha: 2026-11-09 (refresh del mismo día). Repo de trabajo: `nightbox33-cloud/0g-storage-node` @
+Fecha: 2026-11-09 (tercera iteración: re-clonado, cuestionamiento de supuestos y vía ofensiva
+ejecutada). Repo de trabajo: `nightbox33-cloud/0g-storage-node` @
 `f75aeaef2cba5b198b5d34301925edbaa180dcdb`. Fuente de verdad: **clones**, no explorer, no snippets,
 no memoria. Artefactos y scripts en este directorio.
+
+Re-clonado completo (`clone_foundation.sh`): **137/137 repos, 0 fallos, 5.745 refs** (el manifest
+persistido tenía 5.744). Sólo 2 HEAD cambiaron (`0g-pc-e2ee`, `stanford-0g-site`) y apareció una rama
+`claude/brave-turing-*`: **ningún repo de dinero**. `gh api search/code` (6 consultas) y barridos
+`git ls-tree` no hallaron snapshot de balances/genesis 16661. Reintentos de RPC en esta iteración:
+`evmrpc.0g.ai`, `rpc.0g.ai`, `evmrpc-testnet.0g.ai` → `TLS EOF` / DNS; **mainnet sigue sin leerse**.
 
 ---
 
@@ -33,6 +40,19 @@ exactamente lo que el pliego prohíbe.
 Inventario medido: **47 direcciones** mapeadas a repo+commit+artefacto, **9 bytecodes de deployment**
 con bloque y hash, **3 bytecodes recompilados y coincidentes**, **0 balances live** y **$ tocable no
 cuantificable**.
+
+**Añadido en esta tercera iteración (2026-11-09)**: sí encontré un **bug de contabilidad real y
+ejecutable** en el bytecode verificado de `LedgerManager` (§4, `poc_retrieve_fund_drain.js`): un
+servicio que miente en `processRefund()` convierte un crédito falso en ETH real de otros
+depositantes; el PoC ejecutado da X=3 → Y=103 ETH, con 100 ETH saliendo de la víctima y el
+`LedgerManager` pasando de 103 a 0 ETH. `deployInBeaconProxy` (`src/utils/utils.ts`) despliega el
+proxy con `args: [beacon, []]` — **sin datos de init** — y `deploy_ledger_maneger.ts` llama
+`initialize(deployer)` en una tx posterior: la ventana de front-running es real en el patrón de
+deploy, pero en 16661 quedó cerrada hace ~1,9 M de bloques. Lo que lo mata para declararlo crítico
+es que registrar el servicio mentiroso exige `registerService()` = **`onlyOwner`**. Sin
+`initialized()` / `owner()` / `getAllActiveServices()` live no puedo descartar ni afirmar que el
+owner esté comprometido o que algún servicio no verificado esté registrado. Bajo el pliego, un
+condicional con inventario sintético no es un crítico live.
 
 ---
 
@@ -197,6 +217,7 @@ Entrypoints seguidos: `Flow.submit/batchSubmit` → `FixedPrice.chargeFee` → `
 | `Flow` impl sin `_disableInitializers()` en el pin `745c176b…` (arreglado en `0dcef31f…`) | No verificable qué impl corre live; el `initialize()` sobre impl daría **roles de admin** (privilegiado, prohibido) y es *known issue* corregido. Sin saldo de terceros medido. |
 | `PoraMine.submit` → `claimMineReward` | Exige digest/context, merkle (`dataProofEnabled`), `poraOutput <= target`, anti-replay; `claimMineReward` sólo desde `mine`. Sin target on-chain no hay PnL (criterio 4). |
 | `LedgerManager.transferFund` cancela `pendingRefund` sin mover ETH | Conservación exacta: `availableBalance` baja sólo por el ETH enviado; `retrieveFund` lo recupera vía `processRefund` → `receive()` con gate `_isServiceContract`. Replay: 10 0G → 10 0G, sin tocar inventario ajeno. `spendFund` es `onlyServing`. |
+| **BUG REAL: `retrieveFund` acredita `availableBalance += processRefund(...)` sin verificar que llegó ETH; `transferFund` envía `msg.value` real y sólo decrementa `availableBalance` (nunca `totalBalance`)** | `audit/poc_retrieve_fund_drain.js` compila las 9 fuentes literales del `metadata` con los ajustes exactos del deploy, despliega el impl tras un proxy y ejecuta: servicio malicioso con `processRefund()` devolviendo 100 ETH sin enviar nada → `retrieveFund` infla `availableBalance` a 103 mientras `totalBalance` sigue 3 → `transferFund(..., 103)` manda **103 ETH reales** al servicio → `drain()`. Resultado medido: `LedgerManager 103 → 0 ETH`, atacante **+100 ETH** (puso X=3, sacó Y=103; el delta sale íntegro del depósito de 100 ETH de la víctima). Escenario de control con proxy ya inicializado: `registerService` revierte, **0 drenaje**. **Hecho que lo mata**: `registerService(type,version,service,desc)` es `external onlyOwner`; los 3 servicios legítimos tienen bytecode verificado y `processRefund` conserva. Sólo sería permissionless si el proxy `0x2dE54c84…` estuviera sin inicializar (`initialize(attacker)` → owner) o su owner estuviera comprometido. Los scripts `src/deploy/deploy_ledger_maneger.ts` / `deploy_service.ts` ejecutan `initialize()` en tx posterior y registran los servicios (lo que habría revertido con owner = 0), así que la evidencia disponible apunta a que **sí está inicializado**; pero sin RPC no es verificable. El PoC además usa inventario sintético, que el pliego prohíbe como prueba de crítico live. |
 | `settleFeesWithTEE` / `FineTuningServing.settleFees` | `service.teeSignerAcknowledged` lo pone **`onlyOwner`** (`acknowledgeTEESignerByOwner`) y se resetea al cambiar `teeSignerAddress`; además `account.acknowledged` del usuario, firma EIP-712 con `chainid + address(this)`, nonce monotónico y `toSettle <= account.balance`. Confianza elegida, no escalada permissionless. |
 | `W0G.mint(address,uint256)` es permissionless en Solidity | En `core/vm/wrapped_a0gi_base.go` el precompile exige `contract.caller == getWA0GI()` (`0x1Cd069…`) y aplica `Supply.Cap` **por `msg.sender`** (el `minter` que W0G reenvía). Cap por defecto 0 → revert `ErrInsufficientMintCap`. `W0G.totalSupply() == address(this).balance`; no hay sobre-emisión sin cap. |
 | `SetMinterCap(minter,cap,initialSupply)` (subir cap → mint → `withdraw` del colateral ajeno) | Gate nativo `contract.caller == getAgency()` = `0xe1a5162f…` **hardcoded**. La agency es `OwnableUpgradeable` y `initialize()` fija owner `0x2D7F2d…` en `main` → **privilegiado**. `chain-test` fija `0x20f33…` con «known test key», pero esa clave está en `setup-agency.sh` (**bloqueado**, §1.3) y no hay prueba de que ese owner esté en 16661. Sin `owner()` live no pasa criterio 2/3. |
@@ -221,26 +242,47 @@ Entrypoints seguidos: `Flow.submit/batchSubmit` → `FixedPrice.chargeFee` → `
 | `audit/verify_bytecode.js` | recompila el `metadata.sources[*].content` de los 3 `*Impl.json` con `solc@0.8.22` y compara con `deployedBytecode` | ✅ **3/3 `bytecode_match=true`** (ejecutar desde un dir con `solc@0.8.22`, p.ej. `.cache/0g-audit/solc`) |
 | `audit/decode_bridge_rawtx.py` | RLP + `ecrecover` propio sobre las 16 raw txs; verifica nonces, gas, ausencia de `chainId`, firmante y direcciones CREATE; aísla el diff prod/devnet | ✅ 16/16 firmante coincide; diff = últimos 20 bytes |
 | `audit/poc_conservation.py` | replay de `chargeFee`/`fillReward`/`Reward`/`LedgerManager`/`Bridge` | ✅ **Y ≤ X** |
-| `audit/live_probe.py` | `eth_chainId/blockNumber/getCode/getBalance`, 18 getters, **10 probes nuevos** (`initialized()`, `owner()`, `getWA0GI()`, `minterSupply(Bridge)`, `W0G.totalSupply()`, `bridge.localChainID()`), 4 `eth_getStorageAt(slot0)`, `getAllLedgers` | ❌ `BLOCKED` (sin RPC) |
+| `audit/poc_retrieve_fund_drain.js` + `audit/poc_sources/` | **PoC ejecutado** sobre las 9 fuentes literales del `metadata` (`solc 0.8.22`, `viaIR`, 200, `istanbul`): compila el `LedgerManager` real, un proxy con `data=""` y un servicio mentiroso; dos escenarios A/B. Salida en `poc_retrieve_fund_drain_output.txt` | ✅ **X=3 → Y=103 ETH** (LM `103→0`, +100 del depósito ajeno) en B; **0 drenaje** en A |
+| `audit/live_probe.py` | `eth_chainId/blockNumber/getCode/getBalance`, 18 getters, **15 probes** (`initialized()`, `owner()`, `getWA0GI()`, `minterSupply(Bridge)`, `W0G.totalSupply()`, `bridge.localChainID()`, `getParams()`, `sourceCore()`, `maxValue()`, `getDomains()`), 4 `eth_getStorageAt(slot0)`, `getAllLedgers` | ❌ `BLOCKED` (sin RPC) |
 | `audit/audit_pdf_text/*.txt` | extracción `pypdf` de Halborn (41 págs) y Zellic (34 págs) | ✅ persistida |
 
 Para verificar un crítico candidato en un fork: `RPC_URL=<rpc> python3 audit/live_probe.py` produce
-`live_inventory.json`. Los dos checks que decidirían los candidatos abiertos son
-`initialized.LedgerManager/InferenceServing/FineTuningServing` + `slot0.*`, y
-`owner()` de `0xe1a5162f…` / `0x54EbF70B…` + `eth_getBalance(0x1Cd069…)`. Sin ese paso, cualquier
-claim de crítico es teoría.
+`live_inventory.json`. Los checks que decidirían los candidatos abiertos son
+`initialized.LedgerManager/InferenceServing/FineTuningServing` + `slot0.*`,
+`getAllActiveServices()` del LedgerManager (¿hay algún servicio no verificado registrado?),
+`owner()` de `0xe1a5162f…` / `0x54EbF70B…` y `eth_getBalance(0x1Cd069…)`.
+Reproducir el PoC: en un dir con `solc@0.8.22 ganache ethers@6`,
+`OG_POC_SOURCES=/home/user/0g-storage-node/audit/poc_sources node poc_retrieve_fund_drain.js`.
+Sin el paso RPC, cualquier claim de crítico **live** es teoría: el PoC demuestra el bug en el
+bytecode verificado, no que la precondición (`onlyOwner`/proxy sin inicializar) se dé en 16661 hoy.
 
 ---
 
 ## 6. Criterios 1–4
 
-Ningún candidato cumple los 4 simultáneamente. Los bugs concretos en código (Flow impl sin
-initializers, barrido de `balance`, cancelación de refunds, `addReward(msg.value)`, `is_covered`)
-mueren en **1** (known issue corregido / privilegiado / no robo), **3** (no verificable que esa
-revisión y esos parámetros corran live) o **4** (replay da Y ≤ X; sin balances no hay X, Y ni
-inventario ajeno medido). Los que serían permissionless con inventario ajeno real (W0G mint,
-SetMinterCap, proxy sin inicializar, replay de raw txs, staking/precompiles nativos) mueren en **2**
-(gate de agencia/owner/system caller), en **3** (una llamada RPC pendiente que no se puede hacer) o
-en **cobertura** (código de consenso en repo bloqueado). Por tanto: **no crítico live**, con
-**inventario medido** (47 direcciones, 9 bytecodes de deployment, 3 recompilados y coincidentes,
-0 balances live, $ tocable no cuantificable) y cobertura declarada **incompleta**.
+Tabla de criterios para todos los candidatos, incluido el hallazgo nuevo:
+
+| Candidato | 1. código desplegado | 2. permissionless | 3. grafo/estado LIVE | 4. PoC X→Y>X de inventario ajeno |
+|---|---|---|---|---|
+| **`retrieveFund` / `transferFund` con servicio mentiroso** (§4) | ✅ bytecode del impl recompilado byte-idéntico | ❌ `registerService` es `onlyOwner`; única vía permissionless = proxy sin inicializar, y los scripts ejecutan `initialize()` en tx posterior | ❌ sin `initialized()`/`owner()`/`getAllActiveServices()` on-chain | ⚠️ PoC local **X=3→Y=103** (Y−X=100 del depósito ajeno), pero inventario **sintético**, no medido en 16661 ni fork |
+| Flow impl sin initializers, barrido de `balance`, `addReward(msg.value)`, `is_covered` | known issue corregido / no robo | — | ❌ revisión no verificable live | ❌ replay Y ≤ X |
+| W0G `mint`/`burn`, `SetMinterCap`, proxy sin inicializar, replay raw txs, staking/precompiles | ⚠️ código nativo Go anclado | ❌ gate `caller==W0G` / `caller==agency` / `SYSTEM_ADDRESS` / `UPDATE_ROLE` | ❌ una llamada RPC pendiente | ❌ sin X medido |
+| Consenso / genesis / staking `0xea224d…` / binario v1.0.9 | ❌ repos 404 / release asset TLS bloqueado | ? | ? | ? |
+
+**Ningún candidato cumple los 4 simultáneamente.** El hallazgo nuevo es el que más se acerca: es un
+bug **real y ejecutable** en código verificado y su PoC sí produce X→Y>X. Pero falla **2**
+(`onlyOwner` / precondición de proxy sin inicializar no demostrada), **3** (ningún estado live: el
+RPC vuelve a dar `TLS EOF` en los 3 endpoints) y **4** en su cláusula fuerte (el inventario es
+sintético, no un balance de terceros medido en la chain, y no hay fork). Los scripts de deploy
+llaman `initialize()` y registran los 3 servicios legítimos —lo que habría revertido con owner=0—,
+así que la evidencia disponible apunta a que el proxy **sí está inicializado**; pero eso no es
+verificable aquí.
+
+Por tanto, aun cuestionando supuestos, re-clonando y ejecutando la vía ofensiva completa: **no crítico
+live demostrado**. Declarar uno exigiría inventar el estado on-chain, que es exactamente lo que el
+pliego prohíbe. Inventario medido: 47 direcciones, 9 bytecodes de deployment, 3 recompilados y
+coincidentes, **0 balances live**, $ tocable no cuantificable; cobertura declarada **incompleta**
+(consenso, genesis, staking y binario desplegado no materializados). Lo que sí se entrega, y es
+nuevo respecto al informe anterior, es un **bug de contabilidad confirmado con PoC reproducible**
+(`poc_retrieve_fund_drain.js`) y los probes exactos que, con un RPC alcanzable, lo convertirían en
+crítico o lo descartarían en una sola ejecución.

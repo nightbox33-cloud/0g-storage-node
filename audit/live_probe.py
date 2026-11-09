@@ -63,6 +63,12 @@ EXTRA_PROBES = [
      "0x95609212" + "0" * 24 + BRIDGE[2:].lower()),
     ("W0G.totalSupply", W0G, "0x18160ddd"),
     ("bridge.localChainID", BRIDGE, "0xb2bca683"),
+    # restaking / DeFi mainnet proxies (ascend-16661.json, rewarder-16661.json)
+    ("AscendRouter.getParams", "0x4af366C80Eb17F24923fE956Cc21A11A6864B33a", "0x5e615a6b"),
+    ("OracleUpdater.sourceCore", "0xa57e348Afb83153cE2aB27210FFB35c9860B3A42", "0xbc6e4c1d"),
+    ("OracleUpdater.maxValue", "0xa57e348Afb83153cE2aB27210FFB35c9860B3A42", "0x94a5c2e4"),
+    ("OracleUpdater.owner", "0xa57e348Afb83153cE2aB27210FFB35c9860B3A42", "0x8da5cb5b"),
+    ("RestakingStates.getDomains", "0xd5AB0eD30D65f01EC6d6A4BaCA6E466F395334b6", "0x9101cc65"),
 ]
 STORAGE_PROBES = [(f"slot0.{n}", a, 0) for n, a in PROXIES] + [
     ("slot0.agency", AGENCY, 0),
