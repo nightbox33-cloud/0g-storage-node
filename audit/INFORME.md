@@ -140,7 +140,23 @@ de terceros. No almacena nada y su coste marginal es sólo el gas del `submit`.
 Agravante: `_baseReward()` paga además `baseReward()` por cada hit de un chunk finalizado dentro de
 su ventana de 12 meses, con el mismo free-rider.
 
-### 3.2 Por qué es permissionless
+### 3.2 Evidencia on-chain del padding, submission a submission
+
+Las tres últimas submissions de StorageScan (263723/263724/263725) dan el patrón exacto:
+
+| submission | tamaño dato | segmentos (256 KiB) | `startIndex` | capacidad insertada (sectores) | padding hasta la siguiente |
+|---|---|---|---|---|---|
+| 263723 | 1,23 MB | 5 | 2.349.494.272 | 5.120 (1,25 MiB) | 3.072 sectores (37,5 %) |
+| 263724 | 1,35 MB | 6 | 2.349.502.464 | 6.144 (1,5 MiB) | 2.048 sectores (25 %) |
+| 263725 | 1,62 MB | 7 | 2.349.510.656 | 7.168 (1,75 MiB) | — |
+
+Los `startIndex` avanzan **exactamente 8.192 sectores (2 MiB)** por submission, mientras el dato ocupa
+5.120/6.144/7.168 sectores: el árbol rellena con hojas cero hasta el límite de 2 MiB y ese relleno
+(1.024–3.072 sectores por fichero, 12,5–37,5 %) entra en el `flowRoot`, en `epochRange` y en el pool de
+rewards del chunk. Para ficheros pequeños el padding relativo es aún mayor; el agregado medido es
+172 GB de 601,5 GB (28,7 %).
+
+### 3.3 Por qué es permissionless
 
 - `PoraMine.requestMinerId(beneficiary, seed)` es público (`contracts/miner/Mine.sol`) — 1 tx.
   El `minerId` incluye `msg.sender`, así que no hay squatting posible sobre mineros honestos.
@@ -151,7 +167,7 @@ su ventana de 12 meses, con el mismo free-rider.
 - `recallPosition` se "grindea" cambiando `nonce` (exactamente el mismo trabajo de PoRA que un minero
   honesto, pero **sin I/O de disco**: descarta al instante los loads que no son padding).
 
-### 3.3 Call graph live
+### 3.4 Call graph live
 
 ```
 EOA atacante → PoraMine.requestMinerId        (1 tx, permissionless)
@@ -166,7 +182,7 @@ EOA atacante → PoraMine.requestMinerId        (1 tx, permissionless)
 Todo está cableado y en uso: 28,8 0G ya distribuidos por esta misma ruta, 200 submissions/epoch
 (`2 * targetSubmissions`), `poraTarget` ajustado on-chain.
 
-### 3.4 PoC
+### 3.5 PoC
 
 `audit/poc_zero_leaf.py` (ejecutable, sin dependencias del repo) reproduce
 `MineLib.recoverMerkleRoot` y demuestra:
@@ -194,7 +210,7 @@ Evidencia live de que el padding existe y es grande (submissions consecutivas re
 Agregado: **601,5 GB de árbol vs 429,15 GB de datos ⇒ 172 GB (28,7 %) de posiciones de ceros
 cobrables sin almacenar**.
 
-### 3.5 PnL del atacante
+### 3.6 PnL del atacante
 
 - Coste: 1 tx de `requestMinerId` + ~0,002 0G por `submit` (gas 489k–644k, ~80 % del bloque).
 - Ingreso por hit: `claimable/2` del chunk de 8 GB. Un chunk lleno acumula
@@ -207,7 +223,7 @@ cobrables sin almacenar**.
 - **Magnitud honesta**: decenas de 0G. Es el TVL completo de 0G Storage mainnet; en USD es pequeño
   (el precio de 0G no se pudo consultar desde el sandbox). No es dust-de-gas: cada claim renta.
 
-### 3.6 Qué lo mataría (y no ocurre)
+### 3.7 Qué lo mataría (y no ocurre)
 
 - Que `recoverMerkleRoot` exigiera contenido no-cero o que el payout fuera por posición y no por
   chunk: **no ocurre**.
