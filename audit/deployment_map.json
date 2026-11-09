@@ -1,0 +1,578 @@
+{
+  "meta": {
+    "chain_id": "16661",
+    "storage_start_block": "2387557",
+    "repos_total": 137,
+    "blocked": [
+      "0glabs/0g-chain (submodule of 0gfoundation/0g-da-client, HTTP 404 / private)",
+      "0gfoundation/0g-precompiles, 0gfoundation/0g-chain-v2, 0gfoundation/0g-chain-ng, 0gfoundation/integration-tests -> HTTP 404; referenced by A0GI-contracts/CLAUDE.md as the canonical home of the pre-signed raw tx scripts and setup-agency.sh",
+      "setup-agency.sh (known devnet test key) not present in any of the 137 clones",
+      "private repos of 0gfoundation and 0glabs (0 visible to this token)",
+      "GitHub release assets (release-assets.githubusercontent.com)",
+      "Git LFS objects (git-lfs missing; LFS batch API 403)",
+      "live RPC / explorer / indexer (network allowlist: github.com, npm, pypi only)"
+    ]
+  },
+  "rows": [
+    {
+      "network": "16661",
+      "address": "0x62D4144dB0F0a6fBBaeb6296c785C71B3D57C526",
+      "name": "Flow (proxy)",
+      "repo": "0gfoundation/0g-storage-node",
+      "path": "run/config-mainnet-turbo.toml / storage-contracts-abis/FixedPriceFlow.json",
+      "commit": "f75aeaef2cba5b198b5d34301925edbaa180dcdb",
+      "artefact": "ABI FixedPriceFlow.json sha256:1af4706ac46ef71b; ABI pin 0gfoundation/0g-storage-contracts@745c176bd206a37072281ec11aaf4f8ef6d4f6d3",
+      "note": "NO deployedBytecode in any clone for this address; docs ai-context.md agrees"
+    },
+    {
+      "network": "16661",
+      "address": "0xCd01c5Cd953971CE4C2c9bFb95610236a7F414fe",
+      "name": "PoraMine (proxy)",
+      "repo": "0gfoundation/0g-storage-node",
+      "path": "run/config-mainnet-turbo.toml / storage-contracts-abis/PoraMine.json",
+      "commit": "f75aeaef2cba5b198b5d34301925edbaa180dcdb",
+      "artefact": "ABI PoraMine.json sha256:c04a6887d5e12c86; ABI pin 0gfoundation/0g-storage-contracts@745c176bd206a37072281ec11aaf4f8ef6d4f6d3",
+      "note": "NO deployedBytecode in any clone for this address; docs ai-context.md agrees"
+    },
+    {
+      "network": "16661",
+      "address": "0x457aC76B58ffcDc118AABD6DbC63ff9072880870",
+      "name": "ChunkLinearReward (proxy)",
+      "repo": "0gfoundation/0g-storage-node",
+      "path": "run/config-mainnet-turbo.toml / storage-contracts-abis/ChunkLinearReward.json",
+      "commit": "f75aeaef2cba5b198b5d34301925edbaa180dcdb",
+      "artefact": "ABI ChunkLinearReward.json sha256:7ee2f68cc5c01531; ABI pin 0gfoundation/0g-storage-contracts@745c176bd206a37072281ec11aaf4f8ef6d4f6d3",
+      "note": "NO deployedBytecode in any clone for this address; docs ai-context.md agrees"
+    },
+    {
+      "network": "16661",
+      "address": "0xea224dBB52F57752044c0C86aD50930091F561B9",
+      "name": "Staking system contract (IStakingContract)",
+      "repo": "0gfoundation/0g-doc",
+      "path": "docs/ai-context.md / docs/developer-hub/.../staking-interfaces.md",
+      "commit": "c423455e6743e4271a756e9299c0700a1e1f6073",
+      "artefact": "documented address",
+      "note": "implementation source NOT in public clones (chain node = blocked repo)"
+    },
+    {
+      "network": "16661",
+      "address": "0x0000000000000000000000000000000000001000",
+      "name": "DASigners precompile",
+      "repo": "0gfoundation/0g-doc",
+      "path": "docs/ai-context.md / docs/developer-hub/.../staking-interfaces.md",
+      "commit": "c423455e6743e4271a756e9299c0700a1e1f6073",
+      "artefact": "documented address",
+      "note": "implementation source NOT in public clones (chain node = blocked repo)"
+    },
+    {
+      "network": "16661",
+      "address": "0x0000000000000000000000000000000000001002",
+      "name": "WrappedOGBase precompile",
+      "repo": "0gfoundation/0g-doc",
+      "path": "docs/ai-context.md / docs/developer-hub/.../staking-interfaces.md",
+      "commit": "c423455e6743e4271a756e9299c0700a1e1f6073",
+      "artefact": "documented address",
+      "note": "implementation source NOT in public clones (chain node = blocked repo)"
+    },
+    {
+      "network": "16661",
+      "address": "0x1Cd0690fF9a693f5EF2dD976660a8dAFc81A109c",
+      "name": "W0G ERC20",
+      "repo": "0gfoundation/0g-doc",
+      "path": "docs/ai-context.md / docs/developer-hub/.../staking-interfaces.md",
+      "commit": "c423455e6743e4271a756e9299c0700a1e1f6073",
+      "artefact": "documented address",
+      "note": "implementation source NOT in public clones (chain node = blocked repo)"
+    },
+    {
+      "network": "16661",
+      "address": "0x2dE54c845Cd948B72D2e32e39586fe89607074E3",
+      "name": "Compute Ledger (LedgerManager proxy)",
+      "repo": "0gfoundation/0g-doc",
+      "path": "docs/ai-context.md / docs/developer-hub/.../staking-interfaces.md",
+      "commit": "c423455e6743e4271a756e9299c0700a1e1f6073",
+      "artefact": "documented address",
+      "note": "implementation source NOT in public clones (chain node = blocked repo)"
+    },
+    {
+      "network": "16661",
+      "address": "0x47340d900bdFec2BD393c626E12ea0656F938d84",
+      "name": "Compute Inference (proxy)",
+      "repo": "0gfoundation/0g-doc",
+      "path": "docs/ai-context.md / docs/developer-hub/.../staking-interfaces.md",
+      "commit": "c423455e6743e4271a756e9299c0700a1e1f6073",
+      "artefact": "documented address",
+      "note": "implementation source NOT in public clones (chain node = blocked repo)"
+    },
+    {
+      "network": "16661",
+      "address": "0x4e3474095518883744ddf135b7E0A23301c7F9c0",
+      "name": "Compute FineTuning (proxy)",
+      "repo": "0gfoundation/0g-doc",
+      "path": "docs/ai-context.md / docs/developer-hub/.../staking-interfaces.md",
+      "commit": "c423455e6743e4271a756e9299c0700a1e1f6073",
+      "artefact": "documented address",
+      "note": "implementation source NOT in public clones (chain node = blocked repo)"
+    },
+    {
+      "network": "16661",
+      "address": "0x0000000000000000000000000000000000001002",
+      "name": "WrappedOGBase precompile (native Go)",
+      "repo": "0gfoundation/0g-geth",
+      "path": "core/vm/wrapped_a0gi_base.go",
+      "commit": "d5a7ee6f0148d08d3d5e542cdd749d647f69c44b",
+      "artefact": "Mint/Burn require contract.caller == getWA0GI(); SetMinterCap requires caller == getAgency()",
+      "note": "hardcoded W0G=0x1Cd0690f...; hardcoded agency=0xe1a5162f...; caps per minter"
+    },
+    {
+      "network": "16661",
+      "address": "0x0000000000000000000000000000000000001000",
+      "name": "DASigners precompile (native Go)",
+      "repo": "0gfoundation/0g-geth",
+      "path": "core/vm/dasigners.go + core/vm/precompiles/dasigners/",
+      "commit": "d5a7ee6f0148d08d3d5e542cdd749d647f69c44b",
+      "artefact": "Go implementation + ABI bindings",
+      "note": "consensus-layer signer registry"
+    },
+    {
+      "network": "16661",
+      "address": "0x1Cd0690fF9a693f5EF2dD976660a8dAFc81A109c",
+      "name": "W0G ERC20 (Solidity)",
+      "repo": "0gfoundation/A0GI-contracts",
+      "path": "contracts/WrappedA0GI.sol",
+      "commit": "045c6367a675d339dac7f34cbb3cd91079036a83",
+      "artefact": "mint(address,uint256) forwards msg.sender as minter to 0x1002; permissionless at Solidity layer",
+      "note": "cap enforced natively; deployed by pre-EIP-155 raw tx from ephemeral 0x873cd27b..."
+    },
+    {
+      "network": "16661",
+      "address": "0xe1a5162f99e075f8c6681ae28191ab3ac250b468",
+      "name": "W0G agency proxy (hardcoded in precompile)",
+      "repo": "0gfoundation/A0GI-contracts",
+      "path": "contracts/WrappedA0GIBaseAgency.sol",
+      "commit": "045c6367a675d339dac7f34cbb3cd91079036a83",
+      "artefact": "initialize() hardcodes owner 0x2D7F2d... on main; setMinterCap() is onlyOwner",
+      "note": "chain-test branch hardcodes devnet test owner 0x20f33CE9... (known test key)"
+    },
+    {
+      "network": "16661",
+      "address": "0x2D7F2d2286994477Ba878f321b17A7e40E52cDa4",
+      "name": "Mainnet W0G/bridge governance owner",
+      "repo": "0gfoundation/A0GI-contracts",
+      "path": "CLAUDE.md + contracts/WrappedA0GIBaseAgency.sol",
+      "commit": "045c6367a675d339dac7f34cbb3cd91079036a83",
+      "artefact": "hardcoded governance address (EOA/multisig)",
+      "note": "privileged; not permissionless"
+    },
+    {
+      "network": "16661",
+      "address": "0x20f33CE90A13a4b5E7697E3544c3083B8F8A51D4",
+      "name": "Devnet agency test owner",
+      "repo": "0gfoundation/A0GI-contracts",
+      "path": "CLAUDE.md + script/deploy/BridgeRawTxs.s.sol (restaking)",
+      "commit": "045c6367a675d339dac7f34cbb3cd91079036a83",
+      "artefact": "known test key in setup-agency.sh (file NOT in any public clone)",
+      "note": "only chain-test; live ownership not verifiable without RPC"
+    },
+    {
+      "network": "16661",
+      "address": "0x4e3474095518883744ddf135b7E0A23301c7F9c0",
+      "name": "FineTuningServing_v1.0",
+      "repo": "0gfoundation/0g-serving-contract",
+      "path": "deployments/zgMainnet/FineTuningServing_v1.0.json",
+      "commit": "3ceeff03ca66b07921a3579413accffe1d3a1446",
+      "artefact": "deployedBytecode 508 B sha256:85ef2ab392439645; impl tx 0x6ecbc361ff8954e9c0559777139acbc01ba61494601512ae895325081380affa; block 24343771",
+      "note": "abi funcs: "
+    },
+    {
+      "network": "16661",
+      "address": "0x449C244C7d18dBCdd3612e6B14628EEdB236fb80",
+      "name": "FineTuningServing_v1.0Beacon",
+      "repo": "0gfoundation/0g-serving-contract",
+      "path": "deployments/zgMainnet/FineTuningServing_v1.0Beacon.json",
+      "commit": "3ceeff03ca66b07921a3579413accffe1d3a1446",
+      "artefact": "deployedBytecode 804 B sha256:4342605798599d57; impl tx 0xe143fca938a394e3cd9cc4c4ecb2e4a3fe3b51fc41f75d5296e94863e445da96; block 24343755",
+      "note": "abi funcs: implementation,owner,renounceOwnership,transferOwnership,upgradeTo"
+    },
+    {
+      "network": "16661",
+      "address": "0x795d7E2c812AB92E815e5375a0Ca707d56A4838C",
+      "name": "FineTuningServing_v1.0Impl",
+      "repo": "0gfoundation/0g-serving-contract",
+      "path": "deployments/zgMainnet/FineTuningServing_v1.0Impl.json",
+      "commit": "3ceeff03ca66b07921a3579413accffe1d3a1446",
+      "artefact": "deployedBytecode 23112 B sha256:e0ec0073cfb10297; impl tx 0x922dbc91041e813684e626ba69f9e8fe4b50c7efd81da1a8a32492312f193bfb; block 32646792",
+      "note": "abi funcs: MAX_LOCKTIME,MIN_LOCKTIME,MIN_PROVIDER_STAKE,abandonDeliverable,accountExists,acknowledgeDeliverable,acknowledgeTEESigner,acknowledgeTEESignerByOwner,addAccount,addDeliverable,addO"
+    },
+    {
+      "network": "16661",
+      "address": "0x47340d900bdFec2BD393c626E12ea0656F938d84",
+      "name": "InferenceServing_v1.0",
+      "repo": "0gfoundation/0g-serving-contract",
+      "path": "deployments/zgMainnet/InferenceServing_v1.0.json",
+      "commit": "3ceeff03ca66b07921a3579413accffe1d3a1446",
+      "artefact": "deployedBytecode 502 B sha256:fb1858c7aae10056; impl tx 0x47c1b1dab7e5cda981b3f1aa7577a895c935ba72f3d550cb488571ff3f585d32; block 13220064",
+      "note": "abi funcs: "
+    },
+    {
+      "network": "16661",
+      "address": "0xE7e9e873371Cb1b42Ae9E8cB3aA646324932243A",
+      "name": "InferenceServing_v1.0Beacon",
+      "repo": "0gfoundation/0g-serving-contract",
+      "path": "deployments/zgMainnet/InferenceServing_v1.0Beacon.json",
+      "commit": "3ceeff03ca66b07921a3579413accffe1d3a1446",
+      "artefact": "deployedBytecode 804 B sha256:a5c98b5df300f24c; impl tx 0x236e252e6b14dd83b0bec5426c7e17161df519a53e805912751bd223eb5cca46; block 13220046",
+      "note": "abi funcs: implementation,owner,renounceOwnership,transferOwnership,upgradeTo"
+    },
+    {
+      "network": "16661",
+      "address": "0x1c0A264f5ae6cfC37E8695442fB139efD884Ca48",
+      "name": "InferenceServing_v1.0Impl",
+      "repo": "0gfoundation/0g-serving-contract",
+      "path": "deployments/zgMainnet/InferenceServing_v1.0Impl.json",
+      "commit": "3ceeff03ca66b07921a3579413accffe1d3a1446",
+      "artefact": "deployedBytecode 18926 B sha256:8f7caa796c0ab27e; impl tx 0x881d355621dfb9e1176182fe38ebeb5e6711dc1d85934c0ec8a3e521fc265eb0; block 22788739",
+      "note": "abi funcs: MAX_LOCKTIME,MIN_LOCKTIME,MIN_PROVIDER_STAKE,accountExists,acknowledgeTEESigner,acknowledgeTEESignerByOwner,addAccount,addOrUpdateService,deleteAccount,depositFund,getAccount,getAc"
+    },
+    {
+      "network": "16661",
+      "address": "0x2dE54c845Cd948B72D2e32e39586fe89607074E3",
+      "name": "LedgerManager",
+      "repo": "0gfoundation/0g-serving-contract",
+      "path": "deployments/zgMainnet/LedgerManager.json",
+      "commit": "3ceeff03ca66b07921a3579413accffe1d3a1446",
+      "artefact": "deployedBytecode 502 B sha256:fb1858c7aae10056; impl tx 0xac14ae12c9c9ee8274db561580b4cfcea7bda940965a5d799bc3992316f38e71; block 13219885",
+      "note": "abi funcs: "
+    },
+    {
+      "network": "16661",
+      "address": "0xFe5Ed683F64aD623fAaBb7fa439745A866aD65dF",
+      "name": "LedgerManagerBeacon",
+      "repo": "0gfoundation/0g-serving-contract",
+      "path": "deployments/zgMainnet/LedgerManagerBeacon.json",
+      "commit": "3ceeff03ca66b07921a3579413accffe1d3a1446",
+      "artefact": "deployedBytecode 804 B sha256:a5c98b5df300f24c; impl tx 0x9cfef86ba08e90155181ab7abb630e004c445e1add73dcea6dcc295e36ff7c1e; block 13219867",
+      "note": "abi funcs: implementation,owner,renounceOwnership,transferOwnership,upgradeTo"
+    },
+    {
+      "network": "16661",
+      "address": "0xee876A55540eeA57E684Fc3e6d8c4702810E704f",
+      "name": "LedgerManagerImpl",
+      "repo": "0gfoundation/0g-serving-contract",
+      "path": "deployments/zgMainnet/LedgerManagerImpl.json",
+      "commit": "3ceeff03ca66b07921a3579413accffe1d3a1446",
+      "artefact": "deployedBytecode 14609 B sha256:335fe7fc6ea33cb3; impl tx 0x129211e44070dfae17903e0f26d29b6c08cf6eec4043a0a8b31bb2715244bc15; block 22788437",
+      "note": "abi funcs: MAX_ADDITIONAL_INFO_LENGTH,MAX_PROVIDERS_PER_BATCH,MAX_PROVIDERS_PER_USER_PER_SERVICE,MAX_SERVICES,MIN_ACCOUNT_BALANCE,MIN_TRANSFER_AMOUNT,addLedger,deleteLedger,depositFund,deposi"
+    },
+    {
+      "network": "16661",
+      "address": "0x4af366C80Eb17F24923fE956Cc21A11A6864B33a",
+      "name": "ascend-16661:AscendRouter",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/ascend-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0x5e124CeD7dDF75D8ae246cD33a5E7bCfC0f4D157",
+      "name": "ascend-16661:AscendRouterBeacon",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/ascend-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0x77e3a12Fd24eEabb1f4a50116ec89F06FE5a37d5",
+      "name": "ascend-16661:AscendRouterImpl",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/ascend-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0x07458e5F2e1b7d0aB0e6Aae55B9e0ce2424fc514",
+      "name": "ascend-16661:Foundation",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/ascend-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0x4B3c2f55fa67679b382c979A082Df1B32079B4cB",
+      "name": "ascend-16661:MellowVault",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/ascend-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0xa57e348Afb83153cE2aB27210FFB35c9860B3A42",
+      "name": "ascend-16661:OracleUpdater",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/ascend-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0xfc7350b0d7a358Db58875148faF3bDEAaFC82911",
+      "name": "ascend-16661:OracleUpdaterAdmin",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/ascend-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0xbec2A0986A8ab186934237e448Da154c35e4565A",
+      "name": "ascend-16661:OracleUpdaterBeacon",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/ascend-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0xbEceeB5fBdf4b7a876e0D13B71D507208BA15872",
+      "name": "ascend-16661:OracleUpdaterImpl",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/ascend-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0xc0412361882961570d79CE535cB26Fc71bf363A7",
+      "name": "ascend-16661:OracleUpdaterOperator",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/ascend-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0x0000000000000000000000000000000000000000",
+      "name": "ascend-16661:PaymentLayer",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/ascend-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0x1Cd0690fF9a693f5EF2dD976660a8dAFc81A109c",
+      "name": "ascend-16661:WETH",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/ascend-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0xd5AB0eD30D65f01EC6d6A4BaCA6E466F395334b6",
+      "name": "rewarder-16661:RestakingStates",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/rewarder-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0x4BC6bf615c371D2826084b688066580e848a8DE3",
+      "name": "rewarder-16661:RestakingStatesBeacon",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/rewarder-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0x1E3762CE6a15b686855926D18cE29c23D7EbA9C7",
+      "name": "rewarder-16661:RestakingStatesImpl",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/rewarder-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0xD2422ecd886684142005f9d554FDBB9BA5BD4616",
+      "name": "rewarder-16661:RewarderBeacon",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/rewarder-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0x56563413ccA3FB2dC8354bE3fB2aA9dee106D1E5",
+      "name": "rewarder-16661:RewarderFactory",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/rewarder-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0x3A7E357602FD8128Ad11eF950C21f281a0B201F5",
+      "name": "rewarder-16661:RewarderFactoryBeacon",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/rewarder-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0x22f70CDA82Fc134F244Ee0fe8703c98AAA633436",
+      "name": "rewarder-16661:RewarderFactoryImpl",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/rewarder-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "0x3Dc9a976Afa3a4AcB72a3163E780d117b94de017",
+      "name": "rewarder-16661:RewarderImpl",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/rewarder-16661.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "deployment address (no bytecode in clone)",
+      "note": "default branch=dev, live deployment unverified"
+    },
+    {
+      "network": "?",
+      "address": "0x98e0D92b07A0641645FbF7bCAE585E931dD9648b",
+      "name": "bridge-raw-prod-0:BridgeAgencyBeacon",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/bridge-raw-prod-0.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "pre-signed raw deployment tx (8 txs); decoded by audit/decode_bridge_rawtx.py: 6-field legacy unsigned, NO chainId, v in {27,28}, signer recovered == deployer, CREATE address recomputed == committed address",
+      "note": "chain id NOT in file; prod/devnet differ only in the last 20 bytes (owner); same deployer+nonces 0..7; live deployment unverified"
+    },
+    {
+      "network": "?",
+      "address": "0x4189aAc759755B342A26e5aD793b0988d05b65aB",
+      "name": "bridge-raw-prod-0:BridgeAgencyImpl",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/bridge-raw-prod-0.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "pre-signed raw deployment tx (8 txs); decoded by audit/decode_bridge_rawtx.py: 6-field legacy unsigned, NO chainId, v in {27,28}, signer recovered == deployer, CREATE address recomputed == committed address",
+      "note": "chain id NOT in file; prod/devnet differ only in the last 20 bytes (owner); same deployer+nonces 0..7; live deployment unverified"
+    },
+    {
+      "network": "?",
+      "address": "0x3f638aac7704cb59030EcC5D41492dE088C4BE86",
+      "name": "bridge-raw-prod-0:BridgeAgencyProxy",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/bridge-raw-prod-0.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "pre-signed raw deployment tx (8 txs); decoded by audit/decode_bridge_rawtx.py: 6-field legacy unsigned, NO chainId, v in {27,28}, signer recovered == deployer, CREATE address recomputed == committed address",
+      "note": "chain id NOT in file; prod/devnet differ only in the last 20 bytes (owner); same deployer+nonces 0..7; live deployment unverified"
+    },
+    {
+      "network": "?",
+      "address": "0x12b033fa3E148bEBB59EcaE12C1574F01895c8eb",
+      "name": "bridge-raw-prod-0:BridgeBeacon",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/bridge-raw-prod-0.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "pre-signed raw deployment tx (8 txs); decoded by audit/decode_bridge_rawtx.py: 6-field legacy unsigned, NO chainId, v in {27,28}, signer recovered == deployer, CREATE address recomputed == committed address",
+      "note": "chain id NOT in file; prod/devnet differ only in the last 20 bytes (owner); same deployer+nonces 0..7; live deployment unverified"
+    },
+    {
+      "network": "?",
+      "address": "0x1956fa9d9a6508ACb2E3d6BF5Ca46b06908Bf66e",
+      "name": "bridge-raw-prod-0:BridgeERC20Beacon",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/bridge-raw-prod-0.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "pre-signed raw deployment tx (8 txs); decoded by audit/decode_bridge_rawtx.py: 6-field legacy unsigned, NO chainId, v in {27,28}, signer recovered == deployer, CREATE address recomputed == committed address",
+      "note": "chain id NOT in file; prod/devnet differ only in the last 20 bytes (owner); same deployer+nonces 0..7; live deployment unverified"
+    },
+    {
+      "network": "?",
+      "address": "0x1C2F5FE8751997Bc21C15822B67bB588cDb2Be4b",
+      "name": "bridge-raw-prod-0:BridgeERC20Impl",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/bridge-raw-prod-0.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "pre-signed raw deployment tx (8 txs); decoded by audit/decode_bridge_rawtx.py: 6-field legacy unsigned, NO chainId, v in {27,28}, signer recovered == deployer, CREATE address recomputed == committed address",
+      "note": "chain id NOT in file; prod/devnet differ only in the last 20 bytes (owner); same deployer+nonces 0..7; live deployment unverified"
+    },
+    {
+      "network": "?",
+      "address": "0x6938B2ba7183AcEAd5E0D782276EBCd2562C01b4",
+      "name": "bridge-raw-prod-0:BridgeImpl",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/bridge-raw-prod-0.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "pre-signed raw deployment tx (8 txs); decoded by audit/decode_bridge_rawtx.py: 6-field legacy unsigned, NO chainId, v in {27,28}, signer recovered == deployer, CREATE address recomputed == committed address",
+      "note": "chain id NOT in file; prod/devnet differ only in the last 20 bytes (owner); same deployer+nonces 0..7; live deployment unverified"
+    },
+    {
+      "network": "?",
+      "address": "0x54EbF70B91fe29fdF6F5C6cF726983DDF0DE0750",
+      "name": "bridge-raw-prod-0:BridgeProxy",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/bridge-raw-prod-0.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "pre-signed raw deployment tx (8 txs); decoded by audit/decode_bridge_rawtx.py: 6-field legacy unsigned, NO chainId, v in {27,28}, signer recovered == deployer, CREATE address recomputed == committed address",
+      "note": "chain id NOT in file; prod/devnet differ only in the last 20 bytes (owner); same deployer+nonces 0..7; live deployment unverified"
+    },
+    {
+      "network": "?",
+      "address": "0x25Dac40Aca156d62D933bFDA5975a83e16CeA818",
+      "name": "bridge-raw-prod-0:deployer",
+      "repo": "0gfoundation/0g-restaking-contracts",
+      "path": "deployments/bridge-raw-prod-0.json",
+      "commit": "f7cba8a4b77f253c2a82d442faefda365cbb6330",
+      "artefact": "pre-signed raw deployment tx (8 txs); decoded by audit/decode_bridge_rawtx.py: 6-field legacy unsigned, NO chainId, v in {27,28}, signer recovered == deployer, CREATE address recomputed == committed address",
+      "note": "chain id NOT in file; prod/devnet differ only in the last 20 bytes (owner); same deployer+nonces 0..7; live deployment unverified"
+    },
+    {
+      "network": "16661",
+      "address": "-",
+      "name": "0gchaind mainnet binary (Aristotle v1.0.9)",
+      "repo": "0gfoundation/0gchain-Aristotle",
+      "path": "release v1.0.9 / aristotle-v1.0.9.tar.gz (70,389,971 B)",
+      "commit": "release:2026-11-05",
+      "artefact": "BLOCKED: release-assets.githubusercontent.com not reachable",
+      "note": "consensus/EVM/precompile/genesis source of truth"
+    },
+    {
+      "network": "16661",
+      "address": "-",
+      "name": "zgs_node / 0gchaind binaries v1.2.0",
+      "repo": "0gfoundation/0g-storage-node",
+      "path": "release v1.2.0 (5 zip assets)",
+      "commit": "release:2026-01-13",
+      "artefact": "BLOCKED: release assets not downloadable",
+      "note": ""
+    }
+  ]
+}

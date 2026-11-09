@@ -1,0 +1,138 @@
+repo	private	archived	fork	default_branch	head_commit	head_date	head_subject	branches	tags	refs
+0gfoundation/0g-agent-nft	false	false	false	main	b86e108a49bf3601bf57f1f0b3166dce2cb15928	2026-02-02T21:52:30+08:00	Remove refund for free orders in AgentMarket	9	0	11
+0gfoundation/0g-agent-skills	false	false	false	main	04b5a4208577df888e5fc5fa489a488c5eec54be	2026-09-17T21:51:02+05:30	Add an agentic-id category: five skills for 0G AgenticID	6	0	8
+0gfoundation/0g-agentic-id	false	false	false	main	e8cd7a43ceb3788cd8507bd5baca0f1f5e3bc846	2026-11-04T21:54:20+08:00	release: AgentDNA 0.4.0 — the SDK and the attestor take the release's version (#225)	116	7	125
+0gfoundation/0g-agentic-team	false	false	false	main	cf91ce639e130cf42397cc7089498d0696a0da65	2026-09-14T16:41:05+08:00	init: team operating model, collab plan, contract map, roster, agentic-team skill	2	0	4
+0gfoundation/0g-alloy	false	false	true	dev	45168d661c4a5a3b9718ff94a2bec7f8e8e8dc1e	2026-07-16T19:28:04+08:00	feat(consensus): add bridge_requests block-body field (bridge replay carrier) (#4)	108	95	205
+0gfoundation/0g-avs-server	false	false	true	master	e30979abf8668eb3aa8033d1ffd32b15eaf9776b	2024-09-23T20:06:39-07:00	Fix docker-publish-release docker bake (#772)	1	0	3
+0gfoundation/0g-blockscout	false	false	true	master	d0cd6c92c84d87393c39b32730f76481a31b7959	2024-05-21T22:52:43+08:00	Merge pull request #3 from 0glabs/feat_chainid	3	0	5
+0gfoundation/0g-blockscout-frontend	false	false	true	main	a2adb72c07a891864958a45daf4a80af234ced67	2024-05-20T18:34:10+08:00	Merge pull request #3 from 0glabs/fix_build	1	0	3
+0gfoundation/0g-chain-testing	false	false	true	main	2c7b72a54a869682215b8af49e2d1e6c29869532	2023-10-18T08:55:05-04:00	update localnet setup (#24)	16	0	18
+0gfoundation/0g-claude-marketplace	false	false	false	main	6fdc953dfb7870c53562a32a745ac6b80597d95c	2026-02-09T11:38:52+08:00	Merge pull request #2 from 0gfoundation/raven/update-readme	1	0	3
+0gfoundation/0g-compute-skills	false	false	false	main	335fa60d8db07e6de971a43ee9eff6a6e84cb52d	2026-02-20T16:43:24+08:00	Restructure for Agent Skills open standard (#6)	1	0	3
+0gfoundation/0g-compute-ts-sdk	false	false	false	main	3e833e24eef2b9416a8b2c9ca72c80a81126d61e	2026-08-25T20:01:19+08:00	feat(cli): show Upstream (provider_identity) column in get-models (#229)	37	40	79
+0gfoundation/0g-compute-ts-starter-kit	false	false	false	main	df91ab47d32f867fa02797289193b425f373e8d5	2025-12-16T23:31:05+05:30	fix	2	0	4
+0gfoundation/0g-contract-example	false	false	false	main	21871af8df544d45eaad21bdd63d4a9f7a2aa7aa	2024-06-10T15:05:51+08:00	setup example	1	0	3
+0gfoundation/0g-da-client	false	true	false	main	7248f06cc071d07697a3b2542df3e785548c3dbf	2026-07-28T23:01:37+01:00	Update GH org name (#83)	11	2	15
+0gfoundation/0g-da-contract	false	false	false	main	4653902b13618fd97e81fa4229a956c477b27b1a	2026-06-01T06:25:45+00:00	fix(config): remove default deployer key	11	0	13
+0gfoundation/0g-da-encoder	false	false	false	master	6d2479473ebc7f89379ba2f79110e36ca9533648	2026-05-29T14:22:08+08:00	Fix comparison by using 'other' instead of 'self' (#9)	7	0	9
+0gfoundation/0g-da-example-rust	false	false	false	main	4a33043f07dedae273e350190ccea777a0f2b880	2024-12-02T11:17:20+08:00	update disperser.proto (#4)	3	0	5
+0gfoundation/0g-da-light	false	false	false	main	aefc7590d21b84df88ed1edb0314b30b3a7133ec	2024-04-13T00:39:35+08:00	feat: throw errors	2	0	4
+0gfoundation/0g-da-monitor	false	false	false	main	547a8137de457581175fe037b6a5f3c151f07287	2025-01-03T10:46:36+08:00	Merge pull request #1 from 0glabs/damonitor	2	0	4
+0gfoundation/0g-da-node	false	false	false	main	f73ae3c1a0afb29d20b5ce89f69ffe12284d2b9f	2026-07-28T23:02:56+01:00	Fix links and titles in README.md (#28)	14	7	23
+0gfoundation/0g-da-op-plasma	false	false	false	main	84444357a9ab1f16481f3026345bcc1292050e9d	2024-12-31T15:17:34+08:00	fix broken link (#13)	1	0	3
+0gfoundation/0g-da-retriever	false	false	false	main	a4a618373f26e8f76765cec461dd5f921e307e1d	2024-09-09T10:43:33+08:00	update DASigner (#8)	1	0	3
+0gfoundation/0g-da-rust-sdk	false	false	false	main	49dacb3a62d2b586394c01cfa0005fa0344493cf	2024-11-18T09:39:45+08:00	add user document (#2)	1	0	3
+0gfoundation/0g-daytona	false	false	false	0g/main	804520faee024d8bb02e851e16b73d75fac33c93	2026-10-30T11:04:19+08:00	feat(runner): unprivileged sandboxes; snapshot entrypoint without the daemon (#16)	8	1	11
+0gfoundation/0g-demo-app	false	false	false	main	e8a5a3c186fe2752d3045865d53409d14fc0ea8c	2024-07-05T23:05:32+08:00	init commit	1	0	3
+0gfoundation/0g-deployment-scripts	false	false	false	main	068d71af3be1d002da7251d091d11b36c0129774	2025-05-15T09:42:57+05:30	chain id updated	1	0	3
+0gfoundation/0g-doc	false	false	false	main	c423455e6743e4271a756e9299c0700a1e1f6073	2026-11-05T11:27:53+08:00	docs(router): add Web Search, File Inputs, Web Fetch and Image Inputs feature pages (#440)	60	0	62
+0gfoundation/0g-drive	false	false	false	main	b1f1629721878cf65f6a507d2a70cecf5b4e24b9	2026-11-03T11:01:36+08:00	Assistant: keep the API key across browser restarts on iPhone/Safari (#52)	53	0	55
+0gfoundation/0g-ec-gpu	false	false	false	master	6ceca01ae330209227b3681788bfb9c85fbd3186	2024-06-25T18:58:35+08:00	Merge pull request #4 from 0glabs/cond-algo	4	0	6
+0gfoundation/0g-eigen-avs	false	false	true	master	90d3254784d916d519193ad5d64f41063f55b04e	2024-05-14T12:57:47+08:00	Merge pull request #58 from Layr-Labs/samlaf-avs-291-docker-compose-up-does-not-advance-the-chain	1	0	3
+0gfoundation/0g-eliza	false	false	true	main	3d06fe52877dcc37df7dafebe7e5043bab1b9c04	2025-04-25T20:12:53+08:00	fix: update zgc sdk	14	0	16
+0gfoundation/0g-geth	false	false	true	dev	d5a7ee6f0148d08d3d5e542cdd749d647f69c44b	2026-10-17T10:24:32+08:00	fix: fill empty-block rewards in eth_feeHistory with the suggested tip (#40)	57	263	322
+0gfoundation/0g-github-alert-webhook-tg	false	false	true	main	8ff05b78532f5d7ff015086c1b4e1cd5d008ad14	2024-10-16T15:05:08+08:00	update issue msg	1	0	3
+0gfoundation/0g-groth16-gpu	false	false	true	master	8e5c347bd8776645e046ca7ec1e4b9ff4b97c054	2024-01-17T10:18:22-08:00	Adds Absorb and AbsorbGadget impl for Groth Verification Key & Var (#53)	2	0	4
+0gfoundation/0g-groth16-gpu-zk-settlment-dep	false	false	false	main	4e5915b6024471c669a5473da4a1006724918fca	2024-07-30T18:31:50+08:00	modify libsnark reduction for zk settlement	11	0	13
+0gfoundation/0g-hack-box	false	false	false	main	ce7be50c0562d7672bc575b1482fa3bc1e0d8b72	2026-09-15T04:27:04+01:00	Load benchmarks and N100 results (#5)	2	0	4
+0gfoundation/0g-inft-oracle-server-ts	false	false	false	main	8f5c05d4f5fbb46e8e18167bd49a87fea597c28a	2025-06-27T15:05:35+08:00	first commit	1	0	3
+0gfoundation/0g-ito-settlement-server	false	false	true	main	4a672f5b3e168beef773fbe6ac71cec3568421fa	2025-07-23T20:12:27+08:00	refactor structure	1	0	3
+0gfoundation/0g-kms	false	false	false	main	832dbbc7b74c33af5b4e9dbdcc707fbbb34f0a32	2026-11-04T15:34:36+08:00	release: attested admission — scan-verified TEE evidence for key derivation and peers (#15) (#18)	5	1	8
+0gfoundation/0g-memory	false	false	false	main	a03540cf1dbf91e7977e697ffba4a661ccab590c	2026-04-20T22:25:47+08:00	Merge pull request #47 from 0gfoundation/gaoteng/solve-uvicorn-crash	30	0	32
+0gfoundation/0g-pc-e2ee	false	false	false	main	626c22a6daf2f3b7864e098427ebb195b3e6b4dc	2026-11-09T16:20:46+08:00	Spec and serve the `decisions` profile: /v1/decisions seals state and questions	19	16	37
+0gfoundation/0g-python-api	false	false	false	main	da1ab3fac5c7d6221d8b175a1d33fcfe2c0112af	2024-08-21T16:17:37-07:00	Update README.md	1	0	3
+0gfoundation/0g-restaking-contracts	false	false	false	dev	f7cba8a4b77f253c2a82d442faefda365cbb6330	2026-10-20T15:09:56+08:00	feat(ascend): OracleUpdater, a bounded writer for the aOG oracle (#8)	6	0	8
+0gfoundation/0g-reth	false	false	true	dev	c12df839a45800a48bbf04ee34528ba284b42679	2026-11-05T22:25:28+08:00	fix(trie): include hashed entries before deeper stored branches (#33)	518	86	606
+0gfoundation/0g-sandbox	false	false	false	main	ce187a444286258441778d2afeadfe25165b4bcc	2026-11-04T15:08:02+08:00	release: attestor app identity and KMS provider key (#144), AgentDNA 1.4 (#147) (#145)	57	3	62
+0gfoundation/0g-scan-backend	false	false	true	main	fba6a51fd746c6f3eca7814c469312618099a5dd	2026-09-01T16:00:13+08:00	feat: support dynamic NFT metadata (#1030)	3	0	5
+0gfoundation/0g-serving-broker	false	false	false	main	680479ef5e48c0b44a918e3bbc466130b66582b6	2026-11-09T19:46:32+08:00	Serve sealed /decisions end to end (SPEC §7.7)	128	34	164
+0gfoundation/0g-serving-contract	false	false	false	main	3ceeff03ca66b07921a3579413accffe1d3a1446	2026-05-08T21:21:40+08:00	deploy(fine-tuning): upgrade impl across devnet/testnet/mainnet for PR #51 (#52)	29	1	32
+0gfoundation/0g-serving-network	false	false	false	main	213f3544361e75936e7179fb371db545f74dd3a9	2024-11-11T09:23:32+08:00	feat: UI adjust	2	0	4
+0gfoundation/0g-serving-token-counter	false	false	false	main	4646e24156433cec3b9656401715fa555a755f74	2025-07-08T09:41:19+08:00	supports datasets that use non-standard column naming (#4)	1	0	3
+0gfoundation/0g-serving-user-broker-web	false	false	false	main	a40da66746c5462e010cd7dd0ccb542dc0aaa8de	2025-11-24T09:45:25+00:00	Initial commit	1	0	3
+0gfoundation/0g-sourcify	false	false	true	main	a23b4237c55afed465a4716d67144ff6088b6493	2026-09-02T17:03:48+08:00	Add readme doc. (#29)	2	0	4
+0gfoundation/0g-sparse-inference-alignment	false	false	false	main	5e0571d4c5a042c019c97807544a3e12f3e69d9d	2026-10-14T10:45:12+08:00	Gaoteng/compose pin digest (#36)	39	5	46
+0gfoundation/0g-storage-client	false	false	false	main	bb5675461a96b654d3015c5522666ee8101cf810	2026-08-25T22:17:04+02:00	common/blockchain: never let the replay's own failure read as the reason	23	36	61
+0gfoundation/0g-storage-contracts	false	false	false	main	0dcef31fd6398c9aca7267dc5a7a9e1caf3a3581	2026-06-15T10:33:46+08:00	harden Flow: disable initializers on implementation (#69)	2	0	4
+0gfoundation/0g-storage-go-starter-kit	false	false	false	master	26b0208dd427502e720d667f605004e8e16d0a9c	2026-05-16T16:14:11+05:30	Fix stale 0G Storage docs link in README	2	0	4
+0gfoundation/0g-storage-kv	false	false	false	main	fce72eed9979bc1211b91c7d58db4b4a7891575e	2026-09-02T10:09:32+02:00	fix(store): materialize missing column families before opening an existing rocksdb store (resolves #135)	5	9	16
+0gfoundation/0g-storage-map	false	false	false	main	bb44f4444109782cda2a387b2abb6d97cfb79dc6	2024-10-17T17:37:57+08:00	update rpcs	1	0	3
+0gfoundation/0g-storage-node	false	false	false	main	f75aeaef2cba5b198b5d34301925edbaa180dcdb	2026-10-14T17:53:42+08:00	Minor improvement to the docs (README.md) file	15	39	56
+0gfoundation/0g-storage-s3-sdk	false	false	false	main	576a12e515ed2066d0b67f26230e5c26559ccffc	2026-05-28T14:40:55+08:00	client: add DeriveStreamID + Grant + SignupAndGrant helpers (#4)	2	0	4
+0gfoundation/0g-storage-scan	false	false	false	main	019c3b9163a01144c2ca477a22f87afcfe3fafc3	2026-06-02T19:17:26+08:00	feat: provider-level hot/regular node-type tag overlay (#35)	4	0	6
+0gfoundation/0g-storage-sdk-rust	false	false	false	main	660268e4db07f356d9d3169989d53a1f0d062308	2026-04-27T17:37:27+08:00	Feat/ecies encryption (#6)	2	0	4
+0gfoundation/0g-storage-ts-sdk	false	false	false	main	1da5b3ee315b9daab821d7a831680e22680ea066	2026-10-24T23:25:49+08:00	test(uploader): check every segment each node is sent	7	0	9
+0gfoundation/0g-storage-ts-starter-kit	false	false	false	master	6a308551f4a4d2ccb57dea0ec1adee35c4cbbfe3	2026-04-25T12:04:14+05:30	Add client-side encryption support (SDK 1.2.6)	2	0	4
+0gfoundation/0g-storage-web-starter-kit	false	false	false	main	d616415a1020291dd1e2fb06ff344fe103a6f04a	2025-07-04T13:21:11+02:00	fix	1	0	3
+0gfoundation/0g-tapp	false	false	false	main	e0fc4c2ca5cdd7ac266aa3d93b27e7c5d2ad4060	2026-11-04T15:08:10+08:00	release: v0.9.0–v0.11.1 — signed requests, external and Fordefi signers, runtime volume, measured KMS app identities	89	19	110
+0gfoundation/0g-tapp-deprecated	false	false	false	main	41a5c9939a8c2a92b838ed57a292ac1df6a01b17	2025-09-11T16:58:23+08:00	fix some compile bugs	2	0	4
+0gfoundation/0g-tapp-verifier	false	false	false	main	aa6f627f95466b0080aa9332a692928d357e81ea	2026-11-04T15:08:19+08:00	release: Scan 0.5.0 — typed app identities and scoped discovery (#20) (#23)	11	3	16
+0gfoundation/0g-tdx	false	false	false	main	ae64b2fdb99473bc492d195832acaf49d9d6771e	2025-04-21T14:19:13+08:00	kms	1	0	3
+0gfoundation/0g-testing-hub	false	false	false	main	abf7fb8a3d326c12118226b618bb03a7b664f21b	2026-08-28T01:13:40+08:00	fix(signup): single-source the prefill link, split the checklist, nudge stalls	18	0	20
+0gfoundation/0g-ui	false	false	false	main	da2acb8d17bd7d9f09f803a8df5f8033c2bc5375	2026-10-22T13:12:35+05:30	Newsletter: Turnstile as the submit's second step, not the page's, 0.9.1 (#25)	12	12	26
+0gfoundation/0g-vc	false	false	false	main	13f418600eda54c819a43c646094361a9f859ae9	2024-10-17T14:06:46+08:00	Add tree depth	2	0	4
+0gfoundation/0g-zk-settlement-client	false	false	false	main	7b518c99ad44cbd694bc2bd9d7a5106d9f2e3c78	2025-05-29T20:19:54+08:00	update request structure (#4)	5	0	7
+0gfoundation/0g-zk-settlement-server	false	false	false	main	1b7ccd500198b7503adc8667ce7f4d011c5fec36	2025-06-18T15:43:52+08:00	add response circuits (#6)	7	0	9
+0gfoundation/0g-zk-settlement-turbo-engine	false	false	false	main	77b5c71db553c149b6abd05c613f35df231ad195	2024-10-11T10:13:44+08:00	zk settlement rust engine	1	0	3
+0gfoundation/0gchain-Aristotle	false	false	false	main	84b17f05eb18f70d5e1d5e380d9d27dc9a6ee8c3	2025-10-16T11:18:51+08:00	Update README.md	1	10	13
+0gfoundation/0gchain-NG	false	false	false	main	b80e68528d544f6c719c83d9741ca584a76973e2	2025-10-16T11:18:06+08:00	Update README.md	1	20	23
+0gfoundation/0gmem	false	false	true	main	006cd73953d6e838d459d39deafd6c5686b366a6	2026-03-24T12:05:00+08:00	v0.2.0: Query planner, chunk fact extraction, 88.67% on LoCoMo 10-conv	1	0	3
+0gfoundation/A0GI-contracts	false	false	false	main	045c6367a675d339dac7f34cbb3cd91079036a83	2026-09-18T19:37:11+08:00	feat(agency): task to hand W0G agency ownership to a multisig (#1)	3	0	5
+0gfoundation/Agora	false	false	false	main	71a67dbcf2c4fe14042963af880d3761efdea958	2026-06-08T17:18:02+08:00	open	1	0	3
+0gfoundation/CocktailSGD	false	false	true	master	180814507e48c4c209d95a855de2621c52d8acbd	2025-03-10T07:59:42+00:00	Fix: Delete checkpoint	2	0	4
+0gfoundation/DefiLlama-Adapters	false	false	true	main	3567ac9e9ecbe9d49e45a9c0e37f66df72eeefba	2026-06-10T12:21:26+02:00	update @defillama/sdk version	8	0	10
+0gfoundation/Docker-RPC	false	false	false	main	ad1adc7c90d78099e70f84f866d5f32981d4c29f	2025-12-22T15:32:40+05:30	Fix mainnet tarball structure - no validator/ subdirectory	1	0	3
+0gfoundation/ERCs	false	false	true	master	aaf62d46237ac876fc6f2eb06424063d73fe3b90	2025-10-21T14:37:29+08:00	Merge branch 'master' into master	1	0	3
+0gfoundation/agent-wrapper	false	false	false	main	be266f379f95a70b11f994f8486a9eb3a0ab88da	2026-04-28T12:24:20+08:00	chore: update module path to github.com/0gfoundation/agent-wrapper	1	0	3
+0gfoundation/agenticID-examples	false	false	false	main	fd3c58306bf45c42888d4acda949bac0d3d64522	2026-03-20T18:29:07+05:30	Merge pull request #13 from 0gfoundation/fix/quick-dx-improvements	2	0	4
+0gfoundation/alignment-node-release	false	false	false	main	1497e94e03b9cba80916b587815cdfc2c193763f	2025-09-23T15:44:04+09:00	Create config.toml	1	1	4
+0gfoundation/alloy-evm	false	false	true	dev	30e16f63b29ee3219413971ee08a1229499f77bd	2026-07-16T19:28:08+08:00	Cross-chain bridge — execution-layer hook (alloy-evm) (#11)	13	0	15
+0gfoundation/antseed-verification	false	false	false	main	7b3ddb78af56ea8aebc0b54c7fbea76ec3d50124	2026-11-09T16:37:07+08:00	Rotate seller identity to 375f87baeb630772ff2d82292bc96a71dc333929	1	0	3
+0gfoundation/ask-ai-widget	false	false	false	main	b663e8a26b39a512cc8046ce7a20a266edfa0918	2026-09-23T10:20:15+05:30	v0.3.7: the demo shows both layouts; the chat stops scrolling the host page (#15)	14	10	26
+0gfoundation/awesome-0g	false	false	false	main	6184b707dac02c857c1ffef924b15f8591b34d11	2026-03-18T19:11:58+05:30	Fix Twitter handle to @0g_labs	2	0	4
+0gfoundation/cdk-validium-node	false	false	true	develop	0a1743e0009a3225858c24328459d44ddb44a3ae	2024-07-17T20:41:40+02:00	Added Polygon R&D Link (#147)	3	0	5
+0gfoundation/circom-compat	false	false	true	master	170b10fc9ed182b5f72ecf379033dda023d0bf07	2023-07-26T08:54:58-04:00	description and licence (#54)	2	0	4
+0gfoundation/cometbft	false	false	false	main	11c5b259998193c44aab3bc8d010f6f975f097e4	2024-07-31T14:28:31+00:00	refactor(config/node)!: Remove genesisHash from config (#3595)	15	16	33
+0gfoundation/compute-web-ui	false	false	false	main	994429f92ed855ba8bbb19815b54cb945e26c3df	2026-01-08T12:39:04+05:30	ui changes	1	0	3
+0gfoundation/cosmos-sdk	false	false	false	main	28801fc666f1c33f315e815bd57f2952fd6e0b00	2024-03-08T11:18:59+00:00	chore(store/v2): bump iavl  (#19699)	12	511	525
+0gfoundation/cryptpilot	false	false	true	master	bc52f5eac2e0b4a66370f0666c23c23c68ec9050	2026-06-23T14:41:39+08:00	fix(kms): add IMDS error handling and IMDSv2 TODO note	94	30	126
+0gfoundation/daytona	false	false	true	main	95fa3418804be3acf898e8e6a95ca4df16a2295e	2026-02-13T22:59:11+08:00	add register nginx config	1	0	3
+0gfoundation/daytona-1	false	false	true	main	ec4c21b2d597091ac09ecc278f3bcc172575a987	2026-06-25T13:16:13+02:00	Fix license link in README	564	376	942
+0gfoundation/defillama-sdk	false	false	true	master	bcdd76304524dc1b5d4c91a9e3ab50ee9fba6905	2026-06-26T22:23:52+02:00	5.0.217	21	388	411
+0gfoundation/defillama-server	false	false	true	master	88b1a3a5adcd3fa8fc52742b435cb3ec9a8504e8	2026-06-24T21:03:19-06:00	add new listings	2	0	4
+0gfoundation/dimension-adapters	false	false	true	master	476950b0ef7c01d909060cf42f35fcaff6ae2ae7	2026-07-01T09:40:34-04:00	feat(fees): add Streamlock fees/revenue adapter (#7790)	70	1	73
+0gfoundation/ethermint	false	false	true	main	fd8c2d25cf80e7d2d2a142e7b374f979f8f51981	2024-04-04T20:25:02+02:00	Update README.md	9	26	37
+0gfoundation/evmchainbench	false	false	false	main	452eba5fdb8bde3930fcc3c2368fa24e8153c90c	2026-02-05T17:56:45+08:00	Merge pull request #36 from 0gfoundation/fix_transmitter	13	0	15
+0gfoundation/fine-tuning-example	false	false	false	main	1b95be20e70b480c00ebbf976c0fba5afd22b3bd	2026-02-19T08:16:43-07:00	Update training config for meaningful demo results	2	0	4
+0gfoundation/flux-releases	false	false	false	main	EMPTY_REPO_NO_COMMIT		(empty repository: no commits on any ref)	0	0	0
+0gfoundation/go-conflux-util	false	false	true	main	3e9f26e2ace3c7fd1357ec2dc20eaa13b21b7d4f	2025-09-03T17:41:36+08:00	add alert channel for flash duty (#75)	2	15	19
+0gfoundation/go-ethereum	false	false	true	master	bc1ec69008174aa2f5fd3642adeafb0459d2464b	2024-12-16T21:10:08+08:00	trie/pathdb: state iterator (snapshot integration pt 4) (#30654)	1	0	3
+0gfoundation/gravity-aptos	false	false	true	aptos-node	a64f8adc274bf2681df796766ef9a5b195fee44b	2026-08-03T13:37:22+08:00	refactor(oracle): expose fixed-size source progress (#79)	86	4	92
+0gfoundation/groth16-gpu	false	false	false	main	21414deaea99b0092c2dadc44b9702eafc8b73d7	2024-06-14T01:13:31+08:00	Remove duplicated code	1	0	3
+0gfoundation/huggingface_hub	false	false	true	0g/v0.23.4	4c7aa33bac0b4fb59796e76fcc9cd7f5ff0fd426	2024-06-14T16:16:33+02:00	Release: v0.23.4	107	116	225
+0gfoundation/hugsql	false	false	true	master	2b6589f02f6e9052abe2a434bc97b2c5aa532f98	2024-12-02T08:27:33-06:00	Fix require in setting-an-adapter.md (#151)	3	20	25
+0gfoundation/jaine-docs	false	false	false	main	140823438061171ed1a46f107fabeb7fe1de1e28	2025-08-25T12:04:40+01:00	Merge pull request #1 from 0glabs/What-Are-Perps-Update	1	0	3
+0gfoundation/madara-orchestrator	false	false	true	main	2a9d77b7188afadefe3feba3347a909fc83299ed	2024-06-02T00:02:10+05:30	boilerplate code (#9)	2	0	4
+0gfoundation/mcp-0g	false	false	false	main	d7ddc12adb38079c00809f5ec0571baa07c41c4e	2025-06-17T18:32:21+05:30	contract deployement support added	1	0	3
+0gfoundation/nitro	false	false	true	v2.3.3	be086280abdfe76782e8e9a7366ae0eb579dc3d0	2024-10-15T07:24:55+08:00	Merge pull request #4 from roycclu/v2.3.3	7	266	275
+0gfoundation/nitro-contracts	false	false	true	main	0b8c04e8f5f66fe6678a4f53aa15f23da417260e	2025-06-18T05:08:52+09:00	Merge pull request #356 from OffchainLabs/develop	3	46	51
+0gfoundation/nitro-testnode	false	false	true	release	05587bc6169ef9b5ba2a800ac41c578777941bad	2024-02-02T10:04:10-07:00	Merge pull request #31 from OffchainLabs/ha/l1-fee-token-and-register-weth	1	0	3
+0gfoundation/orbit-setup-script	false	false	true	main	f0bc7dd89882ba0ac2d1a13da71c9c978409f652	2024-04-01T13:25:03+01:00	Merge pull request #70 from OffchainLabs/chore-update-nitro-version	1	0	3
+0gfoundation/pancake-contracts-move	false	false	true	main	94b837d0d10d0767ec44e9f7a295ea9161890b54	2023-01-31T09:35:53+08:00	add smart chef contracts (#6)	2	0	4
+0gfoundation/pebble	false	false	true	master	10072f15d4b2669804f9eca158837d161ffbeceb	2026-01-06T17:54:36-07:00	bloom: don't use the blocks slice in the hot path	59	20	81
+0gfoundation/project-floaty	false	false	false	main	94f5ddc85a3198401a13e3bf569442bb766eceac	2026-10-21T22:25:53+05:30	README: new real-life photo of Floaty (#10)	1	1	4
+0gfoundation/reachy-mini-hackathon	false	false	false	main	ceec36da96a04ed93aad7faea869e5c5919455e5	2026-05-27T16:06:27+01:00	docs: wrap GUI/CLI key setup under a single Section 1 parent header	2	0	4
+0gfoundation/reth-core	false	false	true	main	d7df82aeb54e0e516a3cca0071c35cb799a72bf5	2026-07-28T19:11:49+04:00	chore: bump revm to 42.0.0 (#41)	27	12	41
+0gfoundation/revm	false	false	true	dev	6ba11f7052fa3de8aec344fd5acd952bb23b0ed7	2025-12-08T16:23:47+08:00	fix gas used	10	1	13
+0gfoundation/ssz	false	false	true	main	087716904e36daf4bb36fca32ddd269c8934bbbb	2025-04-10T11:38:27+08:00	extends commonBytesLengths to support blobs	1	4	7
+0gfoundation/stanford-0g-site	false	false	false	main	378c94faebafb5a4d5e38dee24f898f6899fa96c	2026-11-09T13:09:04+05:30	Update CertiK perk with the confirmed cohort terms (#22)	9	0	11
+0gfoundation/verification-artifacts-circle	false	false	true	master	c8c31b249341bf3ffb2e8dbff41977c392a260c5	2025-05-12T17:42:59-07:00	Bump node version from 20.9.0 -> 20.18.0 (#543)	2	0	4
+0gfoundation/vllm	false	false	true	0g/v0.5.0	b4896b199c7ee75345757aea7762050327883d5d	2024-07-21T22:36:39+08:00	Merge pull request #1 from 0glabs/canwan/dev/sc-integration	34	29	65
+0gfoundation/wasmer	false	false	true	main	f1fd469c0e476c3025badcc7afd2251649a1f3b4	2024-06-18T11:12:32+02:00	chore: Small tracing log improvements for wasix	2	0	4
+0gfoundation/whitepaper	false	false	false	main	83352fdd0f892711cfdca2da9458085aeb5e7960	2024-11-28T14:55:52+08:00	add compute network and service marketplace	1	0	3
+0gfoundation/zerobot	false	false	false	main	c8328ad9255751a70d814c26e32ac88a287e5b24	2026-10-16T20:33:15+05:30	chore(deps): deps: Next.js 16.4.1 + sharp 0.35.5 (Oct 14 security patch) (#59)	6	0	8
+0gfoundation/zgh-pgvector	false	false	false	main	c28832b25464c429f43be33fed679280feadc8f4	2026-11-07T18:10:32+08:00	Build pgvector for zonky's embedded Postgres bundles	1	1	4
+0gfoundation/zgh-valkey	false	false	false	main	f81fe03954dfce17a0034e276f2993e3b843c88a	2026-11-08T20:40:16+08:00	build: a log with no error line still shows its tail	1	1	4
+0gfoundation/zkevm-contracts	false	false	true	main	d70266b8742672d59d4060019538d03fe0aac181	2024-02-20T15:45:20+01:00	Merge pull request #181 from 0xPolygonHermez/develop	2	0	4
+zerog-ai/MGVerse	false	false	false	main	6625aea305eced7be4f3cf404262af2e93d793b1	2025-12-22T13:59:31-08:00	update test_poker_v1	1	0	3
